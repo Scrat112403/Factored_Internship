@@ -2,6 +2,8 @@
   "employees": [
     {
       "id": 1,
+      "email": "jacarmonaa@unal.edu.co",
+      "password": "test1234",
       "name": "Valentina Carmona",
       "position": "Systems Engineering Intern",
       "skills": {

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
+import Login from './features/Login.js';
+import Profile from './features/Profile';
+import NotFound from './features/NotFound';
 
 function App() {
   return (
