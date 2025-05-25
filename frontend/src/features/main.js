@@ -1,20 +1,23 @@
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import styles from './main.css';
 
 export default function MainMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="header">
+    <div className={styles.header}>
       <h1>Factored AI</h1>
 
-      <Button variant="contained" onClick={() => navigate('/login')}>
+      <button onClick={() => navigate('/login')}>
         Login
-      </Button>
+      </button>
+      <div>
 
-      <Button variant="outlined" onClick={() => navigate('/signin')}>
+      <button onClick={() => navigate('/signin')}>
         Signin
-      </Button>
+      </button>
+    </div>
     </div>
   );
 }
