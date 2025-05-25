@@ -7,10 +7,10 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
+  const { user, password } = req.body;
 
   const employee = data.employees.find(
-    e => e.email === email && e.password === password
+    e => e.user === user && e.password === password
   );
 
   if (!employee) {
@@ -23,7 +23,6 @@ app.post('/api/login', (req, res) => {
   });
 });
 
-// Ruta para obtener el perfil
 app.get('/api/employee/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const employee = data.employees.find(e => e.id === id);

@@ -9,7 +9,7 @@ function Profile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/employee/${id}`)
+    fetch(`http://localhost:3001/api/employee/${id}`)
       .then(res => res.json())
       .then(data => {
         setEmployee(data);

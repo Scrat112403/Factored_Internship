@@ -3,34 +3,34 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [user, setuser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const loginUser = async (email, password) => {
+  const loginUser = async (user, password) => {
     const response = await fetch('http://localhost:3001/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ user, password })
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Error al iniciar sesión');
+      throw new Error(data.message || 'Login error');
     }
 
-    const data = await response.json(); // { userId }
-    return data;
+    return data; // { userId }
   };
 
   const handleLogin = async () => {
     try {
       setError('');
-      const { userId } = await loginUser(email, password);
-      navigate(`/profile/${userId}`); // Redirige al perfil real
+      const { userId } = await loginUser(user.trim(), password); // trim para limpiar espacios
+      navigate(`/profile/${userId}`);
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Error desconocido');
+      setError(error instanceof Error ? error.message : 'Unknown error');
     }
   };
 
@@ -42,11 +42,11 @@ export default function Login() {
       <div className="input">
         <input
           type="text"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
+          id="user"
+          name="user"
+          value={user}
+          onChange={(e) => setuser(e.target.value)}
+          placeholder="Enter your user"
         />
       </div>
 
@@ -63,7 +63,7 @@ export default function Login() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <Button variant="contained" onClick={handleLogin}>
+      <Button onClick={handleLogin}>
         Login
       </Button>
     </div>
