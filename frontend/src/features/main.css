@@ -1,26 +1,81 @@
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  width: auto;
+  background-color: transparent;
+  
+}
+
 h1{
-    
     font-size: 100px;
     text-align: center;
+    color: white;
+    background-color: none;
+}
+
+h2{
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    background-color: none;
 }
 
 button {
-  display: flex;
-  flex-direction: column; /* Para separarlos en vertical */
-  gap: 20px;              /* Espacio entre botones */
-  align-items: center;    /* Centra los botones horizontalmente */
-  margin-top: 40px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
-  background-color: rgb(71, 187, 245) ;
-  border-color: black;
-  border-width: 5px;
-  max-width: 300px;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: white;
+  border: 5px solid white;
   font-size: 18px;
   font-weight: bold;
+  color: #1c1c43;
   cursor: pointer;
+  display: block;          
+  margin: 0 auto;          
+  width: 200px;   
+  margin-top: 40px;         
+  max-width: 300px;
+}
 
+.background-container {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: black;
+}
+
+.column {
+  flex: 1;
+  background-image: url('../components/factoredlogo.png');
+  background-repeat: repeat-y;
+  background-size: 100px;
+  margin-left: 20px;
+  opacity: 0.08;
+  animation: scrollDown 50s linear infinite;
+
+}
+
+/* Columnas pares tienen retraso */
+.col-2,
+.col-4,
+.col-6,
+.col-8 {
+  animation-delay: 2s;
+}
+@keyframes scrollDown {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 1000px;
+  }
 }

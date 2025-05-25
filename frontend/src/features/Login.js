@@ -1,6 +1,6 @@
-import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import styles from './login.css';
 
 export default function Login() {
   const [user, setuser] = useState('');
@@ -35,11 +35,11 @@ export default function Login() {
   };
 
   return (
-    <div className="header">
+    <div className={styles.headerlogin}>
       <h1>Factored AI</h1>
       <h2>Login</h2>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="text"
           id="user"
@@ -63,9 +63,13 @@ export default function Login() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <Button onClick={handleLogin}>
-        Login
-      </Button>
+      <button onClick={handleLogin}>
+        Log In</button>
+      <div className="background-container">
+            {[...Array(10)].map((_, i) => (
+                <div key={i} className={`column col-${i + 1}`} />
+            ))}
+    </div>
     </div>
   );
 }

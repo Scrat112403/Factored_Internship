@@ -7,11 +7,12 @@ import Signin from './features/Signin';
 
 function App() {
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<MainMenu />} /> 
         <Route path="/login" element={<Login />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />  
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

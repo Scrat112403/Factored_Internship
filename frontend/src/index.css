@@ -1,11 +1,50 @@
-body {
+body, html {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
 }
+
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.column {
+  flex: 1;
+  background-image: url('./components/factoredlogo.png');
+  background-repeat: repeat-y;
+  background-size: 80px;
+  opacity: 0.08;
+  animation: scrollDown 50s linear infinite;
+}
+
+/* Columnas pares tienen retraso */
+.col-2,
+.col-4,
+.col-6,
+.col-8 {
+  animation-delay: 1s;
+}
+@keyframes scrollDown {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 1000px;
+  }
+}
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
