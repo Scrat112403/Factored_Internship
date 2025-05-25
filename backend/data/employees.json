@@ -1,1 +1,16 @@
-ECHO is on.
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Valentina Carmona",
+      "position": "Systems Engineering Intern",
+      "skills": {
+        "python": 80,
+        "sql": 75,
+        "java": 65,
+        "spark": 60,
+        "javascript": 85
+      }
+    }
+  ]
+}
