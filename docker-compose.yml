@@ -1,19 +1,20 @@
-version: '3'
+version: '3.8'
+
 services:
   backend:
     build: ./backend
+    container_name: backend-service
     ports:
       - "3001:3001"
-    volumes:
-      - ./backend:/app
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
 
   frontend:
     build: ./frontend
+    container_name: frontend-service
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
+    depends_on:
+      - backend
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
