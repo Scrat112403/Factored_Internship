@@ -1,3 +1,4 @@
+/* General reset and font for all pages */
 body, html {
   margin: 0;
   font-family: 'Roboto';
@@ -5,6 +6,12 @@ body, html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Monospaced font for <code> elements */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Full-screen animated background container */
 .background-container {
   position: fixed;
   top: 0;
@@ -12,29 +19,33 @@ body, html {
   display: flex;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  pointer-events: none;
+  z-index: -1;           
+  pointer-events: none;  
   overflow: hidden;
   background-color: black;
 }
 
+/* Style for each animated background column */
 .column {
   flex: 1;
-  background-image: url('./components/factoredlogo.png');
+  background-image: url('./components/factoredlogo.png'); /* Logo background */
   background-repeat: repeat-y;
   background-size: 80px;
-  opacity: 0.08;
+  opacity: 0.08;           
   margin-left: 20px;
-  animation: scrollDown 50s linear infinite;
+  animation: scrollDown 50s linear infinite; /* Scrolls down */
 }
+
+/* Add a delay to even-numbered columns for staggered animation */
 .col-2,
 .col-4,
 .col-6,
 .col-8,
-.col-10
-{
+.col-10 {
   animation-delay: 1s;
 }
+
+/* Keyframe animation: vertical scroll of background */
 @keyframes scrollDown {
   from {
     background-position-y: 0;
@@ -44,69 +55,65 @@ body, html {
   }
 }
 
-
-.header {
+/* Centered layout for the headers */
+.header,
+.signheader {
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
   justify-content: center;
   box-sizing: border-box;
   padding-bottom: 50px;
   width: auto;
   background-color: transparent;
-  
 }
 
-.signheader{
+/* Main title styles */
+h1 {
+  font-size: 100px;
+  text-align: center;
+  color: white;
+}
+
+/* Subheading styles */
+h2 {
+  font-size: 40px;
+  text-align: center;
+  color: white;
+}
+
+/* Styles for <h3> */
+h3 {
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  width: auto;
-  background-color: transparent;
+  padding-top: 5px;
+  color: white;
 }
 
-
-h1{
-    font-size: 100px;
-    text-align: center;
-    color: white;
-    background-color: none;
-}
-
-h2{
-    font-size: 40px;
-    text-align: center;
-    color: white;
-    background-color: none;
-}
-
-p{
+/* Text */
+p {
   text-align: center;
 }
 
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-input{
+/* Input field styles */
+input {
   padding: 10px;
   background-color: white;
   font-size: 18px;
   font-weight: bold;
   color: #1c1c43;
   cursor: pointer;
-  display: block;          
-  margin: 0 auto;          
-  width: 200px;   
-  margin-top: 20px;         
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 200px;
   max-width: 300px;
-    
 }
 
+/* Button styles */
 button {
   padding: 10px;
   border-radius: 8px;
@@ -116,33 +123,27 @@ button {
   font-weight: bold;
   color: #1c1c43;
   cursor: pointer;
-  display: block;          
-  margin: 0 auto;          
-  width: 200px;   
-  margin-top: 40px;         
-  max-width: 300px;  
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 200px;
+  max-width: 300px;
   transition: all 0.2s ease-in-out;
 }
 
+/* Hover style for enabled buttons */
 button:hover:enabled {
   background-color: black;
   color: white;
 }
 
+/* Style for disabled buttons */
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-
-h3{
-  display: flex;
-  flex-direction: column;
-  align-items: center;    
-  justify-content: center;
-  padding-top:5px;
-  color:white
-}
+/* Row layout for skill inputs */
 .skill-row {
   display: flex;
   justify-content: center;
@@ -150,12 +151,14 @@ h3{
   margin-top: 20px;
 }
 
+/* Style for inputs inside skill rows */
 .skill-row input {
   margin: 0;
   width: 200px;
 }
 
-.profile{
+/* Profile background layer */
+.profile {
   position: fixed;
   top: 0;
   left: 0;
@@ -166,15 +169,16 @@ h3{
   pointer-events: none;
   overflow: hidden;
   background-color: black;
-
 }
 
-.userinfo{
+/* Container for user info in profile */
+.userinfo {
   padding: 20px;
   color: white;
   text-align: left;
 }
 
+/* Chart container */
 .userchart {
   margin-top: 40px;
   padding: 20px;

@@ -1,6 +1,9 @@
+//Import components and styles
 import React from 'react';
 import { Radar } from 'react-chartjs-2';
 import styles from '../index.css';
+
+//Import necessary parts of Chart.js to build the spyder chart
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -11,74 +14,79 @@ import {
   Legend
 } from 'chart.js';
 
+//Register Chart.js components 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
+//Render a radar chart
 function SkillChart({ skills }) {
-  const labels = Object.keys(skills);
-  const values = Object.values(skills);
-
+  //Extracts skill names and values from the passed-in skills object
+  const labels = Object.keys(skills);      
+  const values = Object.values(skills);    
+  //Defines the data structure required by the Radar chart
   const data = {
-    labels,
+    labels, //Array of skill names
     datasets: [
       {
         label: 'Skill Level',
-        data: values,
-        backgroundColor: 'rgba(25, 118, 210, 0.3)',
-        borderColor: 'rgba(25, 118, 210, 1)',
-        borderWidth: 3,
-        pointBackgroundColor: 'rgba(25, 118, 210, 1)',
+        data: values, //Array of scores
+        backgroundColor: '#1976d24d', 
+        borderColor: '#1976d2',       
+        borderWidth: 3,                             
+        pointBackgroundColor:'#1976d24d'
       }
     ]
   };
 
-const options = {
-  responsive: true,
-  scales: {
-    r: {
-      angleLines: {
-        color: 'rgba(25, 118, 210, 0.3)',
-        lineWidth: 3
-      },
-      grid: {
-        color: 'rgba(25, 118, 210, 0.3)',
-        lineWidth: 3
-      },
-      pointLabels: {
-        color: 'white', // ✅ blanco o cualquier color visible
-        font: {
-          size: 16,       // ✅ tamaño real del nombre del skill
-          weight: 'white'
+  //Defines configuration options 
+  const options = {
+    responsive: true, //Makes the chart scale with screen size
+    scales: {
+      r: {
+        angleLines: {
+          color: '#1976d24d', 
+          lineWidth: 3                      
+        },
+        grid: {
+          color: '#1976d24d', 
+          lineWidth: 3                      
+        },
+        pointLabels: {
+          color: 'white',     
+          font: {
+            size: 16,
+            weight: 'bold'   
+          }
+        },
+        ticks: {
+          beginAtZero: true, //Starts scale at 0
+          max: 100,          //Max scale value
+          color: 'white',    
+          font: {
+            size: 14         
+          }
         }
-      },
-      ticks: {
-        beginAtZero: true,
-        max: 100,
-        color: 'white',
-        font: {
-          size: 14
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: 'white',     
+          font: {
+            size: 16          
+          }
         }
       }
     }
-  },
-  plugins: {
-    legend: {
-      labels: {
-        color: 'white',
-        font: {
-          size: 16
-        }
-      }
-    }
-  }
-};
+  };
 
-
-  return <div style={{ textAlign: 'center' }}>
-  <div style={{ display: 'inline-block' }}>
-    <Radar data={data} options={options} width={800} height={800} />
-  </div>
-</div>
-
+  //Returns the chart inside a centered container
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ display: 'inline-block' }}>
+        <Radar data={data} options={options} width={800} height={800} />
+      </div>
+    </div>
+  );
 }
 
 export default SkillChart;
