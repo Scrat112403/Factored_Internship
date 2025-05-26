@@ -7,12 +7,13 @@
       "name": "Valentina Carmona Ardila",
       "position": "Systems Engineering Intern",
       "skills": {
-        "python": 80,
-        "sql": 75,
-        "java": 65,
-        "spark": 60,
-        "javascript": 85
+        "Python": 80,
+        "SQL": 75,
+        "Java": 65,
+        "React": 70,
+        "JavaScript": 85
       }
     }
+    
   ]
 }

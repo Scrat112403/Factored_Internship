@@ -1,9 +1,9 @@
-import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import styles from '../index.css';
 
 export default function Signin() {
-  const [email, setEmail] = useState('');
+  const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
@@ -36,7 +36,7 @@ export default function Signin() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email,
+        user,
         password,
         name,
         position,
@@ -54,29 +54,57 @@ export default function Signin() {
   };
 
   const handleSignin = async () => {
-    try {
-      setError('');
-      navigate(`/login`);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : 'Unknown error');
+  try {
+    setError('');
+
+    // Validar campos básicos
+    if (!user || !password || !name || !position) {
+      setError('Please complete all required fields');
+      return;
     }
-  };
+
+    // Validar cantidad mínima de skills
+    const filledSkills = skills.filter(skill => skill.name && skill.value !== '');
+    if (filledSkills.length < 5) {
+      setError('Please enter at least 5 skills');
+      return;
+    }
+
+    // Validar que todos los valores de score sean entre 0 y 100
+    const invalidScores = filledSkills.some(skill => {
+      const score = parseInt(skill.value);
+      return isNaN(score) || score < 0 || score > 100;
+    });
+
+    if (invalidScores) {
+      setError('All scores must be numbers between 0 and 100');
+      return;
+    }
+
+    const { userId } = await signUser(); // Si pasa validación
+    navigate(`/login`);
+
+  } catch (error) {
+    setError(error instanceof Error ? error.message : 'Unknown error');
+  }
+};
+
 
   return (
-    <div className="header">
+    <div className={styles.signheader}>
       <h1>Factored AI</h1>
-      <h2>Sign In</h2>
+      <h2>Create your account</h2>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="text"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your user"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
         />
       </div>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="password"
           placeholder="Enter your password"
@@ -85,7 +113,7 @@ export default function Signin() {
         />
       </div>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="text"
           placeholder="Enter your name"
@@ -94,7 +122,7 @@ export default function Signin() {
         />
       </div>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="text"
           placeholder="Enter your position"
@@ -102,9 +130,8 @@ export default function Signin() {
           onChange={(e) => setPosition(e.target.value)}
         />
       </div>
-      <label>How many skills?</label>
-      <div className="input">
-        
+      <div className={styles.input}>
+        <h3>Number of skills</h3>
         <input
           type="number"
           placeholder="How many skills?"
@@ -114,7 +141,7 @@ export default function Signin() {
       </div>
 
       {skills.map((skill, index) => (
-        <div key={index} style={{ marginBottom: '10px' }}>
+        <div className="skill-row" key={index}>
           <input
             type="text"
             placeholder={`Skill ${index + 1} name`}
@@ -133,9 +160,14 @@ export default function Signin() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <Button variant="contained" onClick={handleSignin}>
-        Signin
-      </Button>
+      <button onClick={handleSignin}>
+        Sign In
+      </button>
+      <div className="background-container">
+            {[...Array(10)].map((_, i) => (
+                <div key={i} className={`column col-${i + 1}`} />
+            ))}
+    </div>
     </div>
   );
 }

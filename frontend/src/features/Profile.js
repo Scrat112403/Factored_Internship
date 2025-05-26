@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Typography, Avatar, CircularProgress, Box } from '@mui/material';
+import { Avatar, CircularProgress } from '@mui/material';
 import SkillChart from './SkillChart';
+import '../index.css';
 
 function Profile() {
   const { id } = useParams();
@@ -22,26 +23,29 @@ function Profile() {
   }, [id]);
 
   if (loading) return <CircularProgress />;
-
-  if (!employee) return <Typography variant="h6">Employee not found</Typography>;
+  if (!employee) return <p>Employee not found</p>;
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Box display="flex" alignItems="center" gap={2} mb={3}>
+    <div className="userinfo">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', padding: '1rem' }}>
         <Avatar
           alt={employee.name}
-          src={`https://avatars.dicebear.com/api/avataaars/${employee.name}.svg`}
-          sx={{ width: 80, height: 80 }}
+          src={`https://ui-avatars.com/api/${encodeURIComponent(employee.name)}`}
+          sx={{ width: 120, height: 120 }}
         />
-        <Box>
-          <Typography variant="h5">{employee.name}</Typography>
-          <Typography variant="subtitle1">{employee.position}</Typography>
-        </Box>
-      </Box>
+        <div>
+          <h2 style={{ margin: 0 }}>{employee.name}</h2>
+          <p style={{ margin: 0 }}>{employee.position}</p>
+        </div>
+      </div>
 
-      <SkillChart skills={employee.skills} />
-    </Container>
+      <div className="userchart">
+        <SkillChart skills={employee.skills} />
+      </div>
+      <div className="background-container"></div>
+    </div>
   );
 }
 
 export default Profile;
+

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import styles from './login.css';
+import styles from '../index.css';
 
 export default function Login() {
   const [user, setuser] = useState('');
@@ -35,9 +35,9 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.headerlogin}>
+    <div className={styles.header}>
       <h1>Factored AI</h1>
-      <h2>Login</h2>
+      
 
       <div className={styles.input}>
         <input
@@ -50,7 +50,7 @@ export default function Login() {
         />
       </div>
 
-      <div className="input">
+      <div className={styles.input}>
         <input
           type="password"
           id="password"
