@@ -8,6 +8,9 @@ services:
       - "3001:3001"
     environment:
       - NODE_ENV=production
+    volumes:
+      - ./backend:/app
+      - ./backend/data/employees.json:/app/data/employees.json  # ✅ Guarda datos en host
 
   frontend:
     build: ./frontend
